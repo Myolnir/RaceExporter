@@ -1,5 +1,5 @@
 module.exports = {
   mongo: {
-    url: 'mongodb://localhost:27017/race_exporter',
+    url: 'mongodb://shhhhh:shhhhh@ds123136.mlab.com:23136/race_exporter',
   },
 };

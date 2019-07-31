@@ -1,6 +1,7 @@
 exports.STRAVA = Object.freeze({
-  'access_token':'sssssshhhh',
-  'client_id':'sssssshhhh',
-  'client_secret':'sssssshhhh',
-  'redirect_uri'  :'localhost'
+  'access_token':'shhhh',
+  'client_id':'shhhh',
+  'client_secret':'shhhh',
+  'redirect_uri'  :'localhost',
+  'activitiesPerPage': 200,
 });
