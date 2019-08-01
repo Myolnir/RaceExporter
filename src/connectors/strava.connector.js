@@ -1,21 +1,20 @@
 const request = require('request-promise');
-const {STRAVA} = require('../constants');
 const logger = require('../util/logger');
 
 module.exports = class StravaConnector {
-  constructor(deps){
-
+  constructor({config}){
+    this.config = config;
   }
 
   async updateToken() {
     const data = {
-      uri: 'https://www.strava.com/oauth/token',
+      uri: this.config.strava.urls.oauth,
       method: 'POST',
       json: true,
       body: {
-        client_id: STRAVA.client_id,
-        client_secret: STRAVA.client_secret,
-        code: STRAVA.code,
+        client_id: this.config.strava.client_id,
+        client_secret: this.config.strava.client_secret,
+        code: this.config.strava.code,
         grant_type: 'authorization_code',
       }
     };
@@ -32,7 +31,7 @@ module.exports = class StravaConnector {
   async retrieveAllActivities () {
     logger.info('App initiated');
     const access_token = await this.updateToken();
-    const baseUri = `https://www.strava.com/api/v3/athlete/activities?per_page=${STRAVA.activitiesPerPage}&page=`;
+    const baseUri = `${this.config.strava.urls.activities}?per_page=${this.config.strava.activitiesPerPage}&page=`;
     const data = {
       uri: '',
       method: 'GET',
