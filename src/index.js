@@ -2,6 +2,8 @@ const express = require('express');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const catalog = require('./routes/catalog');
+const container = require('./boot');
+const config = container.resolve('config');
 
 let app = express();
 
@@ -24,7 +26,7 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-const server = app.listen(8081, function () {
+const server = app.listen(config.port, function () {
     const host = server.address().address;
     const port = server.address().port;
 
