@@ -11,6 +11,7 @@ module.exports = class StravaController {
     try {
       const activities = await this.stravaConnector.retrieveAllActivities();
       await this.database.saveActivities(logger, activities);
+      return response.send({});
     } catch (err){
       logger.error('Error', {err: err.message});
       return response.send(new Error(err.message));
