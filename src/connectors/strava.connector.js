@@ -2,11 +2,11 @@ const request = require('request-promise');
 const logger = require('../util/logger');
 
 module.exports = class StravaConnector {
-  constructor({config}){
+  constructor ({config}) {
     this.config = config;
   }
 
-  async updateToken() {
+  async updateToken () {
     const data = {
       uri: this.config.strava.urls.oauth,
       method: 'POST',
@@ -16,12 +16,12 @@ module.exports = class StravaConnector {
         client_secret: this.config.strava.client_secret,
         code: this.config.strava.code,
         grant_type: 'authorization_code',
-      }
+      },
     };
 
     try {
-       const result = await request(data);
-       return result.access_token;
+      const result = await request(data);
+      return result.access_token;
     } catch (err) {
       logger.error('Error getting auth token', {err: err.message});
     }
@@ -43,8 +43,8 @@ module.exports = class StravaConnector {
 
     try {
       let activities = [];
-      //database = new database();
-      for (let i = 1; i<10000; i++) {
+      // database = new database();
+      for (let i = 1; i < 10000; i++) {
         data.uri = baseUri + i;
         const result = await request(data);
         if (result && result.length !== 0) {
@@ -60,4 +60,4 @@ module.exports = class StravaConnector {
       throw new Error(err);
     }
   }
-}
+};

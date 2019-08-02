@@ -1,13 +1,13 @@
 require('dotenv').config();
 const {createContainer, asClass, asValue} = require('awilix');
 
-//Controllers
+// Controllers
 const stravaController = require('./controllers/strava.controller');
 
 // Repository
 const database = require('./repository/database');
 
-//Connectors
+// Connectors
 const stravaConnector = require('./connectors/strava.connector');
 
 // services
@@ -24,4 +24,3 @@ module.exports = container.register({
   config: asValue(config),
   raceExporterService: asClass(raceExporterService).singleton(),
 });
-

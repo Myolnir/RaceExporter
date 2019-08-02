@@ -12,7 +12,7 @@ module.exports = {
     activitiesPerPage: 200,
     urls: {
       oauth: 'https://www.strava.com/oauth/token',
-      activities: 'https://www.strava.com/api/v3/athlete/activities'
+      activities: 'https://www.strava.com/api/v3/athlete/activities',
     },
-  }
+  },
 };
