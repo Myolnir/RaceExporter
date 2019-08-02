@@ -13,7 +13,7 @@ module.exports = class StravaController {
     try {
       const activities = await this.stravaConnector.retrieveAllActivities();
       await this.database.saveActivities(logger, activities);
-      res.status(httpStatusCodes.OK);
+      res.status(httpStatusCodes.NO_CONTENT);
       res.send().end();
     } catch (err) {
       logger.error('Error', {err: err.message});
