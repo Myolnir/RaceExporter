@@ -10,6 +10,9 @@ const database = require('./repository/database');
 //Connectors
 const stravaConnector = require('./connectors/strava.connector');
 
+// services
+const raceExporterService = require('./services/raceExporter.service');
+
 const config = require('./config');
 
 const container = createContainer();
@@ -19,5 +22,6 @@ module.exports = container.register({
   database: asClass(database).singleton(),
   stravaConnector: asClass(stravaConnector).singleton(),
   config: asValue(config),
+  raceExporterService: asClass(raceExporterService).singleton(),
 });
 

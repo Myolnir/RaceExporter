@@ -10,4 +10,6 @@ const stravaController = container.resolve('stravaController');
 // POST backup all data
 router.post('/backupAll', stravaController.backupData.bind(stravaController));
 
+// Get all activities
+router.get('/getAll', stravaController.getData.bind(stravaController));
 module.exports = router;
