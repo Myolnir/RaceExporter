@@ -9,6 +9,7 @@ const database = require('./repository/database');
 
 // Connectors
 const stravaConnector = require('./connectors/strava.connector');
+const twilioConnector = require('./connectors/twilio.connector');
 
 // services
 const raceExporterService = require('./services/raceExporter.service');
@@ -23,4 +24,5 @@ module.exports = container.register({
   stravaConnector: asClass(stravaConnector).singleton(),
   config: asValue(config),
   raceExporterService: asClass(raceExporterService).singleton(),
+  twilioConnector: asClass(twilioConnector).singleton(),
 });

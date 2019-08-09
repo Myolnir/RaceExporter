@@ -11,8 +11,7 @@ module.exports = class StravaController {
   async backupData (req, res) {
     logger.info('Backing up strava data');
     try {
-      const activities = await this.stravaConnector.retrieveAllActivities();
-      await this.database.saveActivities(logger, activities);
+      await this.raceExporterService.backupAllActivities(logger);
       res.status(httpStatusCodes.NO_CONTENT);
       res.send().end();
     } catch (err) {

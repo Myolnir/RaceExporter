@@ -8,7 +8,7 @@ module.exports = class Database {
   async saveActivities (logger, activities) {
     const dbClient = await mongoClient.connect(this.config.mongo.url, {useNewUrlParser: true});
     logger.info('Deleting all previous activities');
-    await dbClient.db('race_exporter').collection('activities').drop();
+    await dbClient.db('race_exporter').collection('activities').deleteMany({});
     logger.info(`Inserting ${activities.length} activities`);
     await dbClient.db('race_exporter').collection('activities').insertMany(activities);
     dbClient.close();

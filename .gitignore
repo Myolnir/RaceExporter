@@ -64,3 +64,5 @@ typings/
 
 # VS code
 .vscode
+
+.DS_Store

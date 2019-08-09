@@ -14,5 +14,13 @@ module.exports = {
       oauth: 'https://www.strava.com/oauth/token',
       activities: 'https://www.strava.com/api/v3/athlete/activities',
     },
+    backupTime: process.env.STRAVA_BACKUP_INTERVAL,
+  },
+  twilio: {
+    messagingActive: process.env.TWILIO_MESSAGING_ACTIVE,
+    accountSid: process.env.TWILIO_ACCOUNT_SSID,
+    authToken: process.env.TWILIO_AUTH_TOKEN,
+    sender: process.env.TWILIO_SENDER,
+    destination: process.env.TWILIO_DESTINATION,
   },
 };
