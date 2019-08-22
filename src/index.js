@@ -4,15 +4,17 @@ const cookieParser = require('cookie-parser');
 const catalog = require('./routes/catalog');
 const container = require('./boot');
 const config = container.resolve('config');
-const cron = require("node-cron");
+const cron = require('node-cron');
 const raceExporterService = container.resolve('raceExporterService');
 const logger = require('./util/logger');
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use('/', catalog);
+app.use(cors());
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -31,8 +33,8 @@ app.use((err, req, res) => {
 
 // To backup the activityes daily
 cron.schedule(config.strava.backupTime, async () => {
-  console.log('-------------------')
-  console.log("Updating Strava Activities");
+  console.log('-------------------');
+  console.log('Updating Strava Activities');
   await raceExporterService.backupAllActivities(logger);
 });
 
