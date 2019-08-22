@@ -13,8 +13,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use('/', catalog);
+app.options('*', cors())
 app.use(cors());
+app.use('/', catalog);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
