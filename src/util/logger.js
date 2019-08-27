@@ -3,12 +3,19 @@ const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [
+    // Creates new transport to log to the Console info level logs.
+    new winston.transports.Console({
+      level: 'info',
+      timestamp: () => new Date().toString(),
+      json: true,
+    }),
     //
     // - Write to all logs with level `info` and below to `combined.log`
     // - Write all logs error (and below) to `error.log`.
     //
     new winston.transports.File({filename: 'error.log', level: 'error'}),
     new winston.transports.File({filename: 'combined.log'}),
+    
   ],
 });
 

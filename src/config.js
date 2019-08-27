@@ -1,4 +1,6 @@
 module.exports = {
+  name: 'StravaActivitiesApi',
+  env: process.env.NODE_ENV || 'development',
   port: process.env.PORT,
   mongo: {
     url: process.env.MONGO_URL,
