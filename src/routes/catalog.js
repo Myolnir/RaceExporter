@@ -7,9 +7,10 @@ const stravaController = container.resolve('stravaController');
 
 // STRAVA ROUTES //
 
+// Activities
 // POST backup all data
-router.post('/backupAll', stravaController.backupData.bind(stravaController));
+router.post('/activities/backup', stravaController.backupData.bind(stravaController));
 
 // Get all activities
-router.get('/getAll', stravaController.getData.bind(stravaController));
+router.get('/activities', stravaController.getData.bind(stravaController));
 module.exports = router;
