@@ -30,9 +30,8 @@ module.exports = class StravaController {
     try {
       const activities = await this.raceExporterService.retrieveAllActivities({logger}, after, before, Number(size));
       res.status(httpStatusCodes.OK);
-      res.send({
-        activities,
-      }).end();
+      res.set('Content-Range', activities.meta.pagination.total);
+      res.send(activities).end();
     } catch (err) {
       console.log(err);
       logger.error('Error', {err: err.message});

@@ -6,6 +6,11 @@ module.exports = class Database {
     this.config = config;
   }
 
+  async countActivities ({logger}) {
+    const dbClient = await mongoClient.connect(this.config.mongo.url, {useNewUrlParser: true});
+    return dbClient.db('race_exporter').collection('activities').estimatedDocumentCount();
+  }
+
   async saveActivities (logger, activities) {
     const dbClient = await mongoClient.connect(this.config.mongo.url, {useNewUrlParser: true});
     logger.info('Deleting all previous activities');
