@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.options('*', cors())
+app.options('*', cors({exposedHeaders: ['Content-Range', 'X-Content-Range']}));
 app.use(cors());
 app.use('/', catalog);
 
