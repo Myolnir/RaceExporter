@@ -26,8 +26,9 @@ module.exports = class StravaController {
 
   async getData (req, res) {
     logger.info('Getting all user data');
+    const {after, size, before} = req.query && req.query.page ? req.query.page : '';
     try {
-      const activities = await this.raceExporterService.retrieveAllActivities(logger);
+      const activities = await this.raceExporterService.retrieveAllActivities({logger}, after, before, Number(size));
       res.status(httpStatusCodes.OK);
       res.send({
         activities,
