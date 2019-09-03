@@ -12,10 +12,16 @@ module.exports = class RaceExporterService {
      * Gets all user activities from its own database instead of from the provider.
      * @param {*} logger
      */
-  async retrieveAllActivities ({logger}, after, before, size = DEFAULT_ACTIVITIES_PAGINATION_LIMIT) {
+  async retrieveAllActivities ({logger}, {after, before, size = DEFAULT_ACTIVITIES_PAGINATION_LIMIT}, sort) {
     logger.info('Retrieving all activities from db');
     const totalActivities = await this.database.countActivities({logger});
-    const activities = await this.database.getAllActivities({logger}, {after, before, size});
+    let sortQuery = {_id: 1};
+    if (sort) {
+      sortQuery = {
+        [sort['field']]: sort['order'] === 'DESC' ? -1 : 1,
+      };
+    }
+    const activities = await this.database.getAllActivities({logger}, {after, before, size}, sortQuery);
     return {
       activities,
       meta: {

@@ -21,7 +21,7 @@ module.exports = class Database {
     logger.info('End inserting activities into database');
   }
 
-  async getAllActivities ({logger}, pagination) {
+  async getAllActivities ({logger}, pagination, sort) {
     const dbClient = await mongoClient.connect(this.config.mongo.url, {useNewUrlParser: true});
     logger.info('Getting all user activities');
     const query = {};
@@ -34,7 +34,7 @@ module.exports = class Database {
     const activities = await dbClient.db('race_exporter')
       .collection('activities')
       .find(query)
-      .sort({_id: 1})
+      .sort(sort)
       .limit(pagination.size)
       .toArray();
     dbClient.close();

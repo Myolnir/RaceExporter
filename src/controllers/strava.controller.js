@@ -1,5 +1,6 @@
 const logger = require('../util/logger');
 const httpStatusCodes = require('http-status-codes');
+const {get} = require('lodash');
 module.exports = class StravaController {
 
   constructor ({database, stravaConnector, raceExporterService}) {
@@ -27,8 +28,9 @@ module.exports = class StravaController {
   async getData (req, res) {
     logger.info('Getting all user data');
     const {after, size, before} = req.query && req.query.page ? req.query.page : '';
+    const sort = get(req, 'query.sort');
     try {
-      const activities = await this.raceExporterService.retrieveAllActivities({logger}, after, before, Number(size));
+      const activities = await this.raceExporterService.retrieveAllActivities({logger}, {after, before, size: Number(size)}, sort);
       res.status(httpStatusCodes.OK);
       res.set('Content-Range', activities.meta.pagination.total);
       res.send(activities).end();
