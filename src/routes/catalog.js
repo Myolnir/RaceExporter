@@ -13,4 +13,7 @@ router.post('/activities/backup', stravaController.backupData.bind(stravaControl
 
 // Get all activities
 router.get('/activities', stravaController.getData.bind(stravaController));
+
+router.get('/status', (req, res) => res.status(200).send());
+
 module.exports = router;
