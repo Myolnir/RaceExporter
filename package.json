@@ -33,7 +33,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "strava-v3": "^1.14.0",
-    "twilio": "^4.11.0",
+    "twilio": "^4.20.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
